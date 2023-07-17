@@ -3,20 +3,20 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fileformats-CHANGEME-extras"
+name = "fileformats-medimage-extras"
 description = "Classes for representing different file formats in Python classes for use in type hinting in data workflows"
 readme = "README.rst"
 requires-python = ">=3.8"
 dependencies = [
-    "fileformats >= 0.7",
+    "fileformats >= 0.6",
     "pydra >= 0.22.0"
 ]
 license = {file = "LICENSE"}
 authors = [
-    {name = "<NEED-TO-CHANGE-TO-YOUR-NAME>", email = "<NEED-TO-CHANGE-TO-YOUR-EMAIL>"},
+    {name = "Thomas G. Close", email = "tom.g.close@gmail.com"},
 ]
 maintainers = [
-    {name = "<NEED-TO-CHANGE-TO-YOUR-NAME>", email = "<NEED-TO-CHANGE-TO-YOUR-EMAIL>"},
+    {name = "Thomas G. Close", email = "tom.g.close@gmail.com"},
 ]
 keywords = [
     "file formats",
@@ -54,24 +54,21 @@ test = [
     "codecov",
 ]
 
-converters = [
-]
-
 [project.urls]
-repository = "https://github.com/ArcanaFramework/fileformats-CHANGEME-extras"
+repository = "https://github.com/ArcanaFramework/fileformats-medimage-extras"
 
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "fileformats/extras/CHANGEME/_version.py"
+version-file = "fileformats/extras/medimage/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["fileformats"]
 
 [tool.black]
 target-version = ['py38']
-exclude = "fileformats/extras/CHANGEME/_version.py"
+exclude = "fileformats/extras/medimage/_version.py"
 
 [tool.codespell]
 ignore-words = ".codespell-ignorewords"
