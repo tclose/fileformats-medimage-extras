@@ -9,7 +9,13 @@ readme = "README.rst"
 requires-python = ">=3.8"
 dependencies = [
     "fileformats >= 0.6",
-    "pydra >= 0.22.0"
+    "jq >=1.4.0",
+    "nibabel >=5.0.0",
+    "numpy >=1.20",
+    "pydicom >=2.3.1",
+    "pydra >= 0.22.0",
+    "pydra-dcm2niix",
+    "pydra-mrtrix3",
 ]
 license = {file = "LICENSE"}
 authors = [

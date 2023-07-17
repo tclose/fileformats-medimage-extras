@@ -21,4 +21,4 @@ __pycache__
 *.egg-info
 ~*
 /.venv
-/fileformats/extras/CHANGEME/_version.py
+/fileformats/extras/medimage/_version.py
