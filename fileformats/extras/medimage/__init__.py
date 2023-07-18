@@ -1,2 +1,4 @@
 from ._version import __version__
-from .converters import *
+import converters
+import dicom
+import diffusion
