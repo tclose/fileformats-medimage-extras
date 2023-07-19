@@ -13,6 +13,7 @@ dependencies = [
     "jq >=1.4.0",
     "nibabel >=5.0.0",
     "numpy >=1.20",
+    "medimages4tests >=0.3.0",
     "pydicom >=2.3.1",
     "pydra >= 0.22.0",
     "pydra-dcm2niix",
