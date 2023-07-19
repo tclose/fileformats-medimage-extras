@@ -9,7 +9,7 @@ def nifti_load_metadata(nifti: Nifti):
     return dict(nibabel.load(nifti.fspath).header)
 
 
-@MedicalImage.read_data_array.register
+@MedicalImage.read_array.register
 def nifti_data_array(nifti: Nifti):
     return nibabel.load(nifti.fspath).get_data()
 

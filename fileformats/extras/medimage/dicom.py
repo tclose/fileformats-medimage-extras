@@ -4,8 +4,8 @@ from fileformats.core import FileSet
 from fileformats.medimage import MedicalImage, DicomCollection
 
 
-@MedicalImage.read_data_array.register
-def dicom_read_data_array(collection: DicomCollection):
+@MedicalImage.read_array.register
+def dicom_read_array(collection: DicomCollection):
     image_stack = []
     for dcm_file in collection.contents:
         image_stack.append(pydicom.dcmread(dcm_file).pixel_array)

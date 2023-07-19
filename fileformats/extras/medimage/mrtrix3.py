@@ -2,8 +2,8 @@ import numpy as np
 from fileformats.medimage import MedicalImage, MrtrixImage
 
 
-@MedicalImage.read_data_array.register
-def mrtrix_read_data_array(mif: MrtrixImage):
+@MedicalImage.read_array.register
+def mrtrix_read_array(mif: MrtrixImage):
     raise NotImplementedError(
         "Need to work out how to use the metadata to read the array in the correct order"
     )
