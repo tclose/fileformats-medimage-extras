@@ -12,8 +12,9 @@ FileFormats-medimage Extras
     :alt: Documentation Status
 
 
+
 This is a extras module for the
-[fileformats-medimage](https://github.com/ArcanaFramework/fileformats-medimage) package, which provides
+`fileformats-medimage <https://github.com/ArcanaFramework/fileformats-medimage>`__ package, which provides
 additional functionality to format classes (i.e. aside from basic identification and validation), such as
 conversion tools, metadata parsers, test data generators, etc...
 
