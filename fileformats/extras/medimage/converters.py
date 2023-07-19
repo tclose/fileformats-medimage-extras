@@ -4,7 +4,6 @@ import json
 import typing as ty
 import tempfile
 from fileformats.core import mark
-from fileformats.core.utils import MissingExtendedDependency
 from fileformats.medimage.base import MedicalImage
 from fileformats.medimage.dicom import DicomDir, DicomCollection, DicomSet
 from fileformats.medimage import (
@@ -20,22 +19,10 @@ from fileformats.medimage import (
     NiftiGzBvec,
     NiftiGzXBvec,
 )
-try:
-    import jq
-except ImportError:
-    jq = MissingExtendedDependency("jq", __name__)
-try:
-    import pydra
-except ImportError:
-    pydra = MissingExtendedDependency("pydra", __name__)
-try:
-    import pydra.tasks.mrtrix3.utils as pydra_mrtrix3_utils
-except ImportError:
-    pydra_mrtrix3_utils = MissingExtendedDependency("pydra.tasks.mrtrix3", __name__)
-try:
-    import pydra.tasks.dcm2niix as pydra_dcm2niix
-except ImportError:
-    pydra_dcm2niix = MissingExtendedDependency("pydra.tasks.dcm2niix", __name__)
+import jq
+import pydra
+from pydra.tasks.mrtrix3.utils import MRConvert
+from pydra.tasks.dcm2niix import Dcm2Niix
 
 
 @mark.converter(source_format=MedicalImage, target_format=Analyze, out_ext=Analyze.ext)
@@ -62,7 +49,7 @@ def mrconvert(name, out_ext: str):
     pydra.ShellCommandTask
         the converter task
     """
-    return pydra_mrtrix3_utils.MRConvert(name=name, out_file="out" + out_ext)
+    return MRConvert(name=name, out_file="out" + out_ext)
 
 
 @pydra.mark.task
@@ -150,11 +137,11 @@ def extended_dcm2niix(
     )
 
     if file_postfix is None:
-        file_postfix = attrs.NOTHING
+        file_postfix = attrs.NOTHING  # type: ignore
     wf.add(
-        pydra_dcm2niix.Dcm2Niix(
+        Dcm2Niix(
             in_dir=wf.ensure_dicom_dir.lzout.out,
-            out_dir=".",
+            out_dir=Path("."),
             name="dcm2niix",
             compress=compress,
             file_postfix=file_postfix,
@@ -169,10 +156,10 @@ def extended_dcm2niix(
             coord = [3, extract_volume]
             axes = [0, 1, 2]
         else:  # to_4d
-            coord = attrs.NOTHING
+            coord = attrs.NOTHING  # type: ignore
             axes = [0, 1, 2, -1]
         wf.add(
-            pydra_mrtrix3_utils.MRConvert(
+            MRConvert(
                 in_file=out_file,
                 coord=coord,
                 axes=axes,

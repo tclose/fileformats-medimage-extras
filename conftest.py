@@ -3,12 +3,6 @@ import logging
 from pathlib import Path
 import tempfile
 import pytest
-try:
-    from pydra import set_input_validator
-except ImportError:
-    pass
-else:
-    set_input_validator(True)
 from fileformats.medimage.dicom import DicomDir
 
 # Set DEBUG logging for unittests
