@@ -37,9 +37,9 @@ def dicom_dims(collection: DicomCollection):
     )
 
 
-@DicomCollection.series_id.register
-def dicom_series_id(collection: DicomCollection):
-    return int(collection.load_metadata(specific_tags=[collection.SERIES_NUMBER_TAG])[0])
+@DicomCollection.series_number.register
+def dicom_series_number(collection: DicomCollection):
+    return int(collection.load_metadata(specific_tags=[SERIES_NUMBER_TAG])[0])
 
 
 SERIES_NUMBER_TAG = ("0020", "0011")
