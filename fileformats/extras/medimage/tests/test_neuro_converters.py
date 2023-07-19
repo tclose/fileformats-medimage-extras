@@ -39,9 +39,9 @@ def test_dicom_to_nifti_select_suffix(dummy_mixedfmap_dicom):
         dummy_mixedfmap_dicom, file_postfix="_real"
     )
 
-    assert list(nifti_gz_x_ph.dims) == [256, 256, 60]
-    assert list(nifti_gz_x_imaginary.dims) == [256, 256, 60]
-    assert list(nifti_gz_x_real.dims) == [256, 256, 60]
+    assert list(nifti_gz_x_ph.dims()) == [256, 256, 60]
+    assert list(nifti_gz_x_imaginary.dims()) == [256, 256, 60]
+    assert list(nifti_gz_x_real.dims()) == [256, 256, 60]
 
 
 def test_dicom_to_nifti_with_extract_volume(dummy_dwi_dicom):

@@ -13,7 +13,7 @@ def bvec_read_array(bvec: Bvec):
     directions = np.asarray(
         [[float(x) for x in ln.split()] for ln in bvec.read_contents().splitlines()]
     ).T
-    return np.concatenate(directions, bvals, axis=1)  # type: ignore
+    return np.concatenate((directions, bvals.reshape((-1, 1))), axis=1)  # type: ignore
 
 
 @DwiEncoding.read_array.register
