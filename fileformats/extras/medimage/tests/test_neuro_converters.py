@@ -7,7 +7,6 @@ from fileformats.medimage import (
     MrtrixImageHeader,
     Analyze,
 )
-import fileformats.extras.medimage  # noqa
 from logging import getLogger
 
 
