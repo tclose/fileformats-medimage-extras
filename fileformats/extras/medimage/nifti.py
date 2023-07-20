@@ -5,8 +5,8 @@ from fileformats.medimage import MedicalImage, Nifti, NiftiGz, Nifti1, NiftiGzX,
 import medimages4tests.dummy.nifti
 
 
-@FileSet.load_metadata.register
-def nifti_load_metadata(nifti: Nifti):
+@FileSet.read_metadata.register
+def nifti_read_metadata(nifti: Nifti):
     return dict(nibabel.load(nifti.fspath).header)
 
 

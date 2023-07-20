@@ -14,8 +14,8 @@ def dicom_read_array(collection: DicomCollection):
     return np.asarray(image_stack)
 
 
-@FileSet.load_metadata.register
-def dicom_load_metadata(collection: DicomCollection, index=0, specific_tags=None):
+@FileSet.read_metadata.register
+def dicom_read_metadata(collection: DicomCollection, index=0, specific_tags=None):
     # TODO: Probably should collate fields that vary across the set of
     #       files in the set into lists
     return pydicom.dcmread(
@@ -43,7 +43,7 @@ def dicom_dims(collection: DicomCollection):
 
 @DicomCollection.series_number.register
 def dicom_series_number(collection: DicomCollection):
-    return int(collection.load_metadata(specific_tags=[SERIES_NUMBER_TAG])[0])
+    return int(collection.read_metadata(specific_tags=[SERIES_NUMBER_TAG])[0])
 
 
 @FileSet.generate_test_data.register
