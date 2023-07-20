@@ -4,9 +4,9 @@ FileFormats Medimage Extras
     :target: https://github.com/arcanaframework/fileformats-medimage-extras/actions/workflows/tests.yml
 .. image:: https://codecov.io/gh/arcanaframework/fileformats-medimage-extras/branch/main/graph/badge.svg?token=UIS0OGPST7
     :target: https://codecov.io/gh/arcanaframework/fileformats-medimage-extras
-.. image:: https://img.shields.io/github/stars/ArcanaFramework/fileformats-medimage-extras.svg
-    :alt: GitHub stars
-    :target: https://github.com/ArcanaFramework/fileformats-medimage
+.. image:: https://img.shields.io/pypi/pyversions/fileformats-medimage-extras.svg
+   :target: https://pypi.python.org/pypi/fileformats-medimage-extras/
+   :alt: Supported Python versions
 .. image:: https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat
     :target: https://arcanaframework.github.io/fileformats/
     :alt: Documentation Status
