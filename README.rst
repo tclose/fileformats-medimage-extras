@@ -1,4 +1,4 @@
-FileFormats-medimage Extras
+FileFormats Medimage Extras
 ===========================
 .. image:: https://github.com/arcanaframework/fileformats-medimage-extras/actions/workflows/tests.yml/badge.svg
     :target: https://github.com/arcanaframework/fileformats-medimage-extras/actions/workflows/tests.yml
@@ -12,21 +12,34 @@ FileFormats-medimage Extras
     :alt: Documentation Status
 
 
-
 This is a extras module for the
 `fileformats-medimage <https://github.com/ArcanaFramework/fileformats-medimage>`__ package, which provides
 additional functionality to format classes (i.e. aside from basic identification and validation), such as
 conversion tools, metadata parsers, test data generators, etc...
 
 
-Quick Installation
-------------------
+Prerequisites
+-------------
+
+In order to perform conversions between DICOM and neuroimaging formats such as NIfTI you
+will need to install the following packages
+
+* `Dcm2niix <https://github.com/rordenlab/dcm2niix>`__
+* `MRtrix3 <https://github.com/MRtrix3/MRtrix3>`__
+
+Please see their installation instructions for the best method for your system
+(alternatively the
+`Test GitHub action <https://github.com/ArcanaFramework/fileformats-medimage-extras/blob/main/.github/workflows/tests.yml>`__
+contains an example installation for Ubuntu)
+
+
+Installation
+------------
 
 This extension can be installed for Python 3 using *pip*::
 
     $ pip3 install fileformats-medimage-extras
 
-This will install the core package and any other dependencies
 
 License
 -------
