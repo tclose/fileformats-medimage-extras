@@ -27,24 +27,24 @@ def nifti_dims(nifti: Nifti):
     return nifti.metadata["dim"][1:4]
 
 
-@FileSet.generate_test_data.register
-def nifti_generate_test_data(nifti: Nifti1, dest_dir: Path):
+@FileSet.generate_sample_data.register
+def nifti_generate_sample_data(nifti: Nifti1, dest_dir: Path):
     return medimages4tests.dummy.nifti.get_image(out_file=dest_dir / "nifti.nii")
 
 
-@FileSet.generate_test_data.register
-def nifti_gz_generate_test_data(nifti: NiftiGz, dest_dir: Path):
+@FileSet.generate_sample_data.register
+def nifti_gz_generate_sample_data(nifti: NiftiGz, dest_dir: Path):
     return medimages4tests.dummy.nifti.get_image(
         out_file=dest_dir / "nifti.nii.gz", compressed=True
     )
 
 
-@FileSet.generate_test_data.register
-def nifti_gz_x_generate_test_data(nifti: NiftiGzX, dest_dir: Path):
+@FileSet.generate_sample_data.register
+def nifti_gz_x_generate_sample_data(nifti: NiftiGzX, dest_dir: Path):
     return medimages4tests.mri.neuro.t1w.get_image()
 
 
-@FileSet.generate_test_data.register
-def nifti_x_generate_test_data(nifti: NiftiX, dest_dir: Path):
+@FileSet.generate_sample_data.register
+def nifti_x_generate_sample_data(nifti: NiftiX, dest_dir: Path):
     nifti_gz_x = NiftiGzX(medimages4tests.mri.neuro.t1w.get_image())
     return NiftiX.convert(nifti_gz_x)

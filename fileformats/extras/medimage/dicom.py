@@ -46,14 +46,14 @@ def dicom_series_number(collection: DicomCollection):
     return int(collection.read_metadata(specific_tags=[SERIES_NUMBER_TAG])[0])
 
 
-@FileSet.generate_test_data.register
-def dicom_dir_generate_test_data(dcmdir: DicomDir, dest_dir: Path):
+@FileSet.generate_sample_data.register
+def dicom_dir_generate_sample_data(dcmdir: DicomDir, dest_dir: Path):
     return medimages4tests.dummy.dicom.mri.t1w.siemens.skyra.syngo_d13c.get_image(dest_dir / "dicom_dir")
 
 
-@FileSet.generate_test_data.register
-def dicom_set_generate_test_data(dcmdir: DicomSet, dest_dir: Path):
-    dicom_dir = dicom_dir_generate_test_data(dest_dir)
+@FileSet.generate_sample_data.register
+def dicom_set_generate_sample_data(dcmdir: DicomSet, dest_dir: Path):
+    dicom_dir = dicom_dir_generate_sample_data(dest_dir)
     return list(dicom_dir.iterdir())
 
 
