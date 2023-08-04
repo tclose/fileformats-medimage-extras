@@ -209,7 +209,7 @@ def edit_dcm2niix_side_car(in_file: Path, jq_expr: str, out_file=None) -> Path:
 @pydra.mark.task
 def collect_dcm2niix_outputs(
     out_file: Path, out_json: Path, out_bvec: Path, out_bval: Path
-) -> list[Path]:
+) -> ty.List[Path]:
     lst = [out_file]
     for file in (out_json, out_bvec, out_bval):
         if file is not attrs.NOTHING:
