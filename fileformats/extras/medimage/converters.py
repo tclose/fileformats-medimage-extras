@@ -24,7 +24,7 @@ import pydra
 try:
     from pydra.tasks.mrtrix3.utils import MRConvert
 except ImportError:
-    from pydra.tasks.mrtrix3.latest import mrconvert as MRConvert
+    from pydra.tasks.mrtrix3.latest.mrconvert import mrconvert as MRConvert
 from pydra.tasks.dcm2niix import Dcm2Niix
 
 
