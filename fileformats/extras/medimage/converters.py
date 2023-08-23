@@ -12,13 +12,16 @@ from fileformats.medimage import (
     NiftiGz,
     NiftiX,
     NiftiGzX,
-    MrtrixImage,
-    MrtrixImageHeader,
     NiftiXBvec,
     NiftiBvec,
     NiftiGzBvec,
     NiftiGzXBvec,
 )
+
+try:
+    from fileformats.medimage import MrtrixImage, MrtrixImageHeader
+except ImportError:
+    from fileformats.mrtrix3 import ImageFormat as MrtrixImage, ImageHeader as MrtrixImageHeader
 import jq
 import pydra
 try:
