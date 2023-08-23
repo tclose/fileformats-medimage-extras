@@ -3,10 +3,12 @@ from fileformats.medimage import (
     NiftiGzX,
     NiftiGzXBvec,
     NiftiBvec,
-    MrtrixImage,
-    MrtrixImageHeader,
     Analyze,
 )
+try:
+    from fileformats.medimage import MrtrixImage, MrtrixImageHeader
+except ImportError:
+    from fileformats.mrtrix3 import ImageFormat as MrtrixImage, ImageHeader as MrtrixImageHeader
 from logging import getLogger
 
 

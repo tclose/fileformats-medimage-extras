@@ -17,19 +17,23 @@ from fileformats.medimage import (
     NiftiGzBvec,
     NiftiGzXBvec,
 )
-from fileformats.mrtrix3 import ImageFormat as MrtrixImageFormat, ImageHeader as MrtrixImageHeader
+
+try:
+    from fileformats.medimage import MrtrixImage, MrtrixImageHeader
+except ImportError:
+    from fileformats.mrtrix3 import ImageFormat as MrtrixImage, ImageHeader as MrtrixImageHeader
 import jq
 import pydra
 try:
     from pydra.tasks.mrtrix3.utils import MRConvert
 except ImportError:
-    from pydra.tasks.mrtrix3.latest.mrconvert import mrconvert as MRConvert
+    from pydra.tasks.mrtrix3.latest import mrconvert as MRConvert
 from pydra.tasks.dcm2niix import Dcm2Niix
 
 
 @mark.converter(source_format=MedicalImage, target_format=Analyze, out_ext=Analyze.ext)
 @mark.converter(
-    source_format=MedicalImage, target_format=MrtrixImageFormat, out_ext=MrtrixImageFormat.ext
+    source_format=MedicalImage, target_format=MrtrixImage, out_ext=MrtrixImage.ext
 )
 @mark.converter(
     source_format=MedicalImage,
