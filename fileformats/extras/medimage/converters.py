@@ -12,13 +12,12 @@ from fileformats.medimage import (
     NiftiGz,
     NiftiX,
     NiftiGzX,
-    MrtrixImage,
-    MrtrixImageHeader,
     NiftiXBvec,
     NiftiBvec,
     NiftiGzBvec,
     NiftiGzXBvec,
 )
+from fileformats.mrtrix3 import ImageFormat as MrtrixImageFormat, ImageHeader as MrtrixImageHeader
 import jq
 import pydra
 try:
@@ -30,7 +29,7 @@ from pydra.tasks.dcm2niix import Dcm2Niix
 
 @mark.converter(source_format=MedicalImage, target_format=Analyze, out_ext=Analyze.ext)
 @mark.converter(
-    source_format=MedicalImage, target_format=MrtrixImage, out_ext=MrtrixImage.ext
+    source_format=MedicalImage, target_format=MrtrixImageFormat, out_ext=MrtrixImageFormat.ext
 )
 @mark.converter(
     source_format=MedicalImage,

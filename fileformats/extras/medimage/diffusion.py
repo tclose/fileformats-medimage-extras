@@ -1,5 +1,5 @@
 import numpy as np
-from fileformats.medimage.diffusion import DwiEncoding, Bval, Bvec, Bfile
+from fileformats.medimage.diffusion import DwiEncoding, Bval, Bvec
 
 
 @Bval.read_array.register
@@ -14,10 +14,3 @@ def bvec_read_array(bvec: Bvec):
         [[float(x) for x in ln.split()] for ln in bvec.read_contents().splitlines()]
     ).T
     return np.concatenate((directions, bvals.reshape((-1, 1))), axis=1)  # type: ignore
-
-
-@DwiEncoding.read_array.register
-def bfile_read_array(bfile: Bfile):
-    return np.asarray(
-        [[float(x) for x in ln.split()] for ln in bfile.read_contents().splitlines()]
-    )
