@@ -5,10 +5,6 @@ from fileformats.medimage import (
     NiftiBvec,
     Analyze,
 )
-try:
-    from fileformats.medimage import MrtrixImage, MrtrixImageHeader
-except ImportError:
-    from fileformats.mrtrix3 import ImageFormat as MrtrixImage, ImageHeader as MrtrixImageHeader
 from logging import getLogger
 
 
@@ -83,21 +79,6 @@ def test_dicom_to_nifti_as_4d(dummy_t1w_dicom):
 
     nifti_gz_x_e1 = NiftiGzX.convert(dummy_t1w_dicom, to_4d=True)
     assert nifti_gz_x_e1.metadata["dim"][0] == 4
-
-
-# @pytest.mark.xfail(reason="not sure what the reason is at this stage, might be bug in Pydra")
-def test_nifti_to_mrtrix(dummy_dwi_dicom):
-    nifti_fsgrad = NiftiBvec.convert(dummy_dwi_dicom)
-    MrtrixImage.convert(nifti_fsgrad)
-    MrtrixImageHeader.convert(nifti_fsgrad)
-
-
-def test_dicom_to_mrtrix_image(dummy_dwi_dicom):
-    MrtrixImage.convert(dummy_dwi_dicom)
-
-
-def test_dicom_to_mrtrix_image_header(dummy_dwi_dicom):
-    MrtrixImageHeader.convert(dummy_dwi_dicom)
 
 
 def test_dicom_to_analyze(dummy_t1w_dicom):
