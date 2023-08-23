@@ -3,7 +3,9 @@ import attrs
 import json
 import typing as ty
 import tempfile
+import jq
 from fileformats.core import mark
+import pydra
 from fileformats.medimage.base import MedicalImage
 from fileformats.medimage.dicom import DicomDir, DicomCollection, DicomSet
 from fileformats.medimage import (
@@ -19,12 +21,6 @@ from fileformats.medimage import (
 )
 
 try:
-    from fileformats.medimage import MrtrixImage, MrtrixImageHeader
-except ImportError:
-    from fileformats.mrtrix3 import ImageFormat as MrtrixImage, ImageHeader as MrtrixImageHeader
-import jq
-import pydra
-try:
     from pydra.tasks.mrtrix3.utils import MRConvert
 except ImportError:
     from pydra.tasks.mrtrix3.latest import mrconvert as MRConvert
@@ -32,14 +28,6 @@ from pydra.tasks.dcm2niix import Dcm2Niix
 
 
 @mark.converter(source_format=MedicalImage, target_format=Analyze, out_ext=Analyze.ext)
-@mark.converter(
-    source_format=MedicalImage, target_format=MrtrixImage, out_ext=MrtrixImage.ext
-)
-@mark.converter(
-    source_format=MedicalImage,
-    target_format=MrtrixImageHeader,
-    out_ext=MrtrixImageHeader.ext,
-)
 def mrconvert(name, out_ext: str):
     """Initiate an MRConvert task with the output file extension set
 
