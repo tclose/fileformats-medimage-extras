@@ -7,7 +7,7 @@ import jq
 from fileformats.core import mark
 import pydra
 from fileformats.medimage.base import MedicalImage
-from fileformats.medimage.dicom import DicomDir, DicomCollection, DicomSet
+from fileformats.medimage.dicom import DicomDir, DicomCollection, DicomSeries
 from fileformats.medimage import (
     Analyze,
     Nifti,
@@ -48,13 +48,13 @@ def mrconvert(name, out_ext: str):
 
 @pydra.mark.task
 def ensure_dicom_dir(dicom: DicomCollection) -> DicomDir:
-    if isinstance(dicom, DicomSet):
+    if isinstance(dicom, DicomSeries):
         dicom_dir_fspath = tempfile.mkdtemp()
         dicom.copy(dicom_dir_fspath, mode=DicomDir.CopyMode.link)
         dicom = DicomDir(dicom_dir_fspath)
     elif not isinstance(dicom, DicomDir):
         raise RuntimeError(
-            "Unrecognised input to ensure_dicom_dir, should be DicomSet or DicomDir "
+            "Unrecognised input to ensure_dicom_dir, should be DicomSeries or DicomDir "
             f"not {dicom}"
         )
     return dicom
