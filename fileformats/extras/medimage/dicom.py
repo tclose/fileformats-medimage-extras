@@ -18,15 +18,6 @@ def dicom_read_array(collection: DicomCollection):
     return np.asarray(image_stack)
 
 
-@FileSet.read_metadata.register
-def dicom_read_metadata(collection: DicomCollection, index=0, specific_tags=None):
-    # TODO: Probably should collate fields that vary across the set of
-    #       files in the set into lists
-    return pydicom.dcmread(
-        list(collection.contents)[index], specific_tags=specific_tags
-    )
-
-
 @MedicalImage.vox_sizes.register
 def dicom_vox_sizes(collection: DicomCollection):
     return tuple(
