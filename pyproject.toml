@@ -9,6 +9,7 @@ readme = "README.rst"
 requires-python = ">=3.8"
 dependencies = [
     "fileformats >= 0.6",
+    "fileformats-extras >= 0.2.1",
     "fileformats-medimage >= 0.3",
     "jq >=1.4.0",
     "nibabel >=5.0.0",
@@ -59,7 +60,6 @@ test = [
     "pytest-env>=0.6.2",
     "pytest-cov>=2.12.1",
     "codecov",
-    "medimages4tests >=0.3",
 ]
 
 [project.urls]
