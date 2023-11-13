@@ -1,4 +1,5 @@
 from pathlib import Path
+import typing as ty
 import nibabel
 from fileformats.core import FileSet
 from fileformats.medimage import MedicalImage, Nifti, NiftiGz, Nifti1, NiftiGzX, NiftiX
@@ -28,23 +29,23 @@ def nifti_dims(nifti: Nifti):
 
 
 @FileSet.generate_sample_data.register
-def nifti_generate_sample_data(nifti: Nifti1, dest_dir: Path):
+def nifti_generate_sample_data(nifti: Nifti1, dest_dir: Path, seed: int, stem: ty.Optional[str]):
     return medimages4tests.dummy.nifti.get_image(out_file=dest_dir / "nifti.nii")
 
 
 @FileSet.generate_sample_data.register
-def nifti_gz_generate_sample_data(nifti: NiftiGz, dest_dir: Path):
+def nifti_gz_generate_sample_data(nifti: NiftiGz, dest_dir: Path, seed: int, stem: ty.Optional[str]):
     return medimages4tests.dummy.nifti.get_image(
         out_file=dest_dir / "nifti.nii.gz", compressed=True
     )
 
 
 @FileSet.generate_sample_data.register
-def nifti_gz_x_generate_sample_data(nifti: NiftiGzX, dest_dir: Path):
+def nifti_gz_x_generate_sample_data(nifti: NiftiGzX, dest_dir: Path, seed: int, stem: ty.Optional[str]):
     return medimages4tests.mri.neuro.t1w.get_image()
 
 
 @FileSet.generate_sample_data.register
-def nifti_x_generate_sample_data(nifti: NiftiX, dest_dir: Path):
+def nifti_x_generate_sample_data(nifti: NiftiX, dest_dir: Path, seed: int, stem: ty.Optional[str]):
     nifti_gz_x = NiftiGzX(medimages4tests.mri.neuro.t1w.get_image())
     return NiftiX.convert(nifti_gz_x)
