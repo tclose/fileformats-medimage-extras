@@ -38,7 +38,7 @@ def dicom_dims(collection: DicomCollection):
 
 @DicomCollection.series_number.register
 def dicom_series_number(collection: DicomCollection):
-    return int(collection.read_metadata(specific_tags=[SERIES_NUMBER_TAG])[0])
+    return str(collection.metadata["SeriesNumber"])
 
 
 @FileSet.generate_sample_data.register
